@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const Settings: React.FC = () => {
   const [name, setName] = useState("Gaurav Sahu");
-  const [profilePicture, setProfilePicture] = useState(
+  const [profilePicture] = useState(
     "https://via.placeholder.com/150" // Replace with your image URL
   );
 
