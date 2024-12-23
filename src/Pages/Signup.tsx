@@ -15,7 +15,7 @@ const Signup = () => {
         password: string
       }
     const {
-        register,reset,handleSubmit,
+        register,handleSubmit,
         formState:{errors}
     }=useForm<FormValues>()
     const [sendotp,setsendotp]=useState(false);
