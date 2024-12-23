@@ -68,10 +68,12 @@ const Signup = () => {
                   navigator("/signin")
             }) 
           }catch(e){
+            toast.dismiss(toastId)
               console.log("error while signing up")
           }
            }
         }).catch((error)=>{
+          toast.dismiss(toastId)
           console.log(error)
           alert(error)
         })
