@@ -12,6 +12,7 @@ import { uploadFileDirectly } from "../../server/cloudinaryConnect";
 import { resetForm1State } from "../../slices/form1Reducer";
 import { resetExtraState } from "../../slices/extraReducer";
 import { resetThankyouState } from "../../slices/thankyouReducer";
+import { setCredits } from "../../slices/authReducer";
 const BasicRight = () => {
     const [imageString, setImageString] = useState<string>("");
     const {spaceLogo}=useSelector((state:any)=>state.form1)
@@ -80,6 +81,7 @@ const BasicRight = () => {
           toast.dismiss(toastId)
           console.log(result)
           toast.success("Space created successfully")
+          dispatch(setCredits(result.data.credits))
           dispatch(resetForm1State())
           dispatch(resetExtraState())
           dispatch(resetThankyouState())

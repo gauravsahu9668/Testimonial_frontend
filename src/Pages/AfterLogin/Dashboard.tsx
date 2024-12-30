@@ -4,7 +4,7 @@ import { IoMdSearch } from "react-icons/io";
 import { CiVideoOn } from "react-icons/ci";
 import { IoCheckboxOutline } from "react-icons/io5";
 import { BsStars } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaFolderPlus } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -15,12 +15,39 @@ import { IoIosLink } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { BACKEND_URL } from "../../server/axiosConnect";
 import toast from "react-hot-toast";
+import { Bar,Line} from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  LineElement,
+  BarElement,
+  PointElement,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(
+  LineElement,
+  BarElement,
+  PointElement,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend
+);
 const Dashboard = () => {
 const [spaces, setSpace] = useState([]);
 const [totalSpaces, setTotalSpaces] = useState(0);
-const { token} = useSelector((state: any) => state.auth);
+const { token,payment,credits} = useSelector((state: any) => state.auth);
 const [manageOpener,setManageOpener]=useState({check:false,value:-1})
 const [loader,setLoader]=useState(false)
+const [lineData,setLineData]=useState<any>(null);
+const [barData,setBardata]=useState<any>(null)
 const deleteHandler=async(space_id:number)=>{
     try{
        const response=await axios({
@@ -39,10 +66,25 @@ const deleteHandler=async(space_id:number)=>{
       console.log("error in fetching the data")
     }
 }
+const navigate=useNavigate();
 const copyHandler=(space_id:number)=>{
      const url=`${space_id}`
      navigator.clipboard.writeText(url)
      toast.success("space copied")
+}
+const createSpaceHandler=()=>{
+     if(credits>0){
+      navigate("/create-space/new")
+     }
+     else{
+       if(payment){
+        navigate("/create-space/new");
+       }
+       else{
+          toast.error("No more credits")
+          navigate("/upgrade")
+       }
+     }
 }
 const copylink=()=>{
   const url="https://chic-puffpuff-b72889.netlify.app"
@@ -73,8 +115,62 @@ const getallSpaces = async () => {
       console.log(e)
     }
 };
+const gettextvideodata=async()=>{
+  const userId=Number(localStorage.getItem("userId"));
+  try{
+    await axios({
+      url:`${BACKEND_URL}/analytics/allreviewdata`,
+      method:"POST",
+      data:{
+        userId
+      },
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    }).then((res)=>{
+      if(res){
+       setLineData(res.data.data)
+       const data=Object.values(res.data.data)
+       setLineData({
+        labels:["Text reviews","Video Reviews"],
+        datasets: [
+          {
+            label: "Number of reviews",
+            data,
+            backgroundColor: [
+              "#FF6384",
+              "#FFCE56",
+            ], // Colors for bars
+            borderColor: "#000",
+            borderWidth: 1,
+          },
+        ],
+       });
+       setBardata({
+        labels:["Text","Videos"],
+        datasets:[
+          {
+          label: "Number of Courses", // Label for the graph
+          data, // Assign values dynamically
+          fill: true, // Don't fill under the line
+          borderColor: "#36A2EB", // Line color
+          tension: 0.2, // Smoothness of the curve
+          pointBackgroundColor: "#FF6384", // Point colors
+          pointBorderColor: "#36A2EB",
+          pointHoverBackgroundColor: "#FFCE56",
+          pointHoverBorderColor: "#FF9F40",
+          }
+        ]
+      })
+      }
+    })
+  }catch(error){
+    console.log(error);
+  }
+}
 useEffect(() => {
-    getallSpaces(); // Only run once on the component's initial render
+    getallSpaces();
+    gettextvideodata();
 }, []); 
   return (
   <> {
@@ -105,16 +201,131 @@ useEffect(() => {
             <img src={pagebuilder} className="rounded-md w-full object-cover" alt="Page Builder" />
           </div>
         </div>
-  
+        <div className="w-[80%] m-10 p-8 flex flex-row justify-between gap-x-6 mx-auto h-[420px] bg-[#1e1e2f] rounded-xl shadow-lg">
+              <div className="w-[45%] h-full rounded-lg bg-gradient-to-r from-[#4a5568] to-[#2d3748] flex flex-col p-4">
+    <h2 className="text-white text-lg font-semibold mb-4">Review Type Distribution</h2>
+    {lineData?.labels?.length > 0 && (
+      <Bar
+        data={lineData}
+        options={{
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                color: "#CBD5E0",
+                font: {
+                  size: 12,
+                },
+              },
+            },
+            tooltip: {
+              callbacks: {
+                label: function (tooltipItem) {
+                  return `Reviews: ${tooltipItem.raw}`;
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { color: "#4A5568" },
+              ticks: { color: "#E2E8F0" },
+              title: {
+                display: true,
+                text: "Review Type",
+                color: "#E2E8F0",
+                font: {
+                  size: 14,
+                },
+              },
+            },
+            y: {
+              grid: { color: "#4A5568" },
+              beginAtZero: true,
+              ticks: { color: "#E2E8F0" },
+              title: {
+                display: true,
+                text: "Number of Reviews",
+                color: "#E2E8F0",
+                font: {
+                  size: 14,
+                },
+              },
+            },
+          },
+        }}
+      />
+    )}
+              </div>
+              <div className="w-[45%] h-full rounded-lg bg-gradient-to-r from-[#2d3748] to-[#1a202c] flex flex-col p-4">
+    <h2 className="text-white text-lg font-semibold mb-4">Category Analysis</h2>
+    {barData?.labels?.length > 0 && (
+      <Line
+        data={barData}
+        options={{
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                color: "#A0AEC0",
+                font: {
+                  size: 12,
+                },
+              },
+            },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  return `Courses: ${context.raw}`;
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { color: "#4A5568" },
+              ticks: { color: "#E2E8F0" },
+              title: {
+                display: true,
+                text: "Category",
+                color: "#E2E8F0",
+                font: {
+                  size: 14,
+                },
+              },
+            },
+            y: {
+              grid: { color: "#4A5568" },
+              beginAtZero: true,
+              ticks: { color: "#E2E8F0" },
+              title: {
+                display: true,
+                text: "Number of Courses",
+                color: "#E2E8F0",
+                font: {
+                  size: 14,
+                },
+              },
+            },
+          },
+        }}
+      />
+    )}
+              </div>
+        </div>
         <div className="w-[90%] lg:w-[75%] mx-auto my-6">
           <h1 className="text-[28px] lg:text-[35px] font-bold text-[#1F2937] my-4">Overview</h1>
           <div className="flex flex-wrap gap-4 justify-between mb-10">
             <div className="flex-1 min-w-[200px] p-6 rounded-md border border-[#E5E7EB] bg-[#FFFFFF] shadow-md">
               <div className="w-full flex items-center justify-between">
-                <p className="text-[16px] text-[#374151]">Total Videos</p>
+                <p className="text-[16px] text-[#374151]">Total credits</p>
                 <CiVideoOn className="text-[#9CA3AF]" />
               </div>
-              <div className="text-[20px] lg:text-[24px] text-[#1F2937] font-semibold mt-4">2</div>
+              <div className="text-[20px] lg:text-[24px] text-[#1F2937] font-semibold mt-4">{credits}</div>
             </div>
             <div className="flex-1 min-w-[200px] p-6 rounded-md border border-[#E5E7EB] bg-[#FFFFFF] shadow-md">
               <div className="w-full flex items-center justify-between">
@@ -141,12 +352,10 @@ useEffect(() => {
           <div className="w-[90%] lg:w-[75%] mx-auto pb-32">
             <div className="w-full flex justify-between items-center">
               <h1 className="text-[24px] lg:text-[32px] font-bold text-[#1F2937]">Spaces</h1>
-              <Link to="/create-space/new">
-                <button className="flex items-center gap-x-2 rounded-md px-4 py-2 text-white text-[14px] lg:text-[18px] bg-[#2563EB] hover:bg-[#1E40AF]">
+                <button onClick={()=>{createSpaceHandler()}} className="flex items-center gap-x-2 rounded-md px-4 py-2 text-white text-[14px] lg:text-[18px] bg-[#2563EB] hover:bg-[#1E40AF]">
                   <IoIosAdd />
                   Create a new space
                 </button>
-              </Link>
             </div>
             <div className="w-full h-[40px] flex items-center border border-[#E5E7EB] mt-5 mb-5 rounded-md bg-[#FFFFFF] focus-within:border-[#2563EB]">
               <div className="w-[10%] lg:w-[5%] flex items-center justify-center">
@@ -212,20 +421,14 @@ useEffect(() => {
             <FaFolderPlus className="text-4xl mx-auto text-[#9CA3AF] text-center" />
             <h1 className="mt-4 text-center text-[18px] lg:text-[22px] text-[#1F2937]">No Spaces yet</h1>
             <p className="mt-3 text-center text-[12px] lg:text-[14px] text-[#6B7280]">Create your first space to start collecting testimonials.</p>
-            <Link to="/create-space/new">
-              <button className="flex mx-auto items-center gap-x-2 mt-4 px-4 py-2 bg-[#2563EB] text-[14px] lg:text-[18px] rounded-md text-white hover:bg-[#1E40AF]">
+              <button onClick={()=>{createSpaceHandler()}} className="flex mx-auto items-center gap-x-2 mt-4 px-4 py-2 bg-[#2563EB] text-[14px] lg:text-[18px] rounded-md text-white hover:bg-[#1E40AF]">
                 <IoIosAdd />
                 Create a new space
               </button>
-            </Link>
           </div>
         )}
       </div>
   }</>
-  
-  
-  
-  
   )
 }
 export default Dashboard

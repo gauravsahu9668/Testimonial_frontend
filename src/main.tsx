@@ -2,7 +2,6 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-// import rootReducer from './reducer/reducer.ts'
 import { BrowserRouter } from 'react-router-dom'
 import authReducer from './slices/authReducer.ts'
 import form1Reducer from "./slices/form1Reducer.ts"

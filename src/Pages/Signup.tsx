@@ -44,6 +44,7 @@ const Signup = () => {
         }
       }).then((res:any)=>{
         toast.dismiss(toastId)
+        console.log(res.data.otp)
           setgeneratedotp(res.data.otp);
           toast.success(res.data.message)
       })

@@ -11,7 +11,6 @@ interface AuthState {
   notifySubject:string;
   notifyMessage:string
 }
-
 const initialState: AuthState = {
     maxVideoDuration: "120 seconds",
     maxCharacters:0,
@@ -64,7 +63,5 @@ const extraSlice = createSlice({
     },
   },
 });
-
 export const {resetExtraState,setextraState, setNotifyMessage,setNotifySubject,setMAxVideoDuration,setMaxCharacters,setVideoButtonText,settextButtonText,setConsentDisplay,setTextSubmissionTitle,setQuestioTag } = extraSlice.actions;
-
 export default extraSlice.reducer;

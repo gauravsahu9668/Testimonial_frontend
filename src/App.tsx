@@ -17,6 +17,9 @@ import { resetForm1State } from './slices/form1Reducer'
 import { resetThankyouState } from './slices/thankyouReducer'
 import Manage from './Pages/AfterLogin/Manage'
 import Settings from './Pages/AfterLogin/Settings'
+import WallOfLove from './Pages/AfterLogin/WallofLove'
+import Upgrade from './Pages/AfterLogin/Upgrade'
+import Analytics from './Pages/AfterLogin/Analytics'
 // import VideoPopUp from './Pages/Testimonials/videoPopUp''
 // import VideoReview from './Pages/Testimonials/VideoReview'
 function App() {
@@ -53,11 +56,13 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/create-space/:id' element={<SpaceCreation />} />
           <Route path='/dashboard' element={<DashBoard />} />
-          <Route path='/upgrade' element={<DashBoard />} />
+          <Route path='/upgrade' element={<Upgrade/>} />
           <Route path='/settings' element={<Settings />} />
           <Route path='/affiliates' element={<DashBoard />} />
           <Route path='/rewardaccount' element={<DashBoard />} />
           <Route path='/manage-testimonial/:id' element={<Manage />} />
+          <Route path='/walloflove' element={<WallOfLove></WallOfLove>} />
+          <Route path='/analytics/:id' element={<Analytics></Analytics>}></Route>
         </>
         :
         <>

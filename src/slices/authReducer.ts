@@ -8,10 +8,16 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface AuthState {
   loading: boolean | null;
   token: string | null;
+  profilePicture :string | null;
+  credits:number
+  payment:boolean
 }
 const initialState: AuthState = {
   loading: null,
   token: localStorage.getItem("AuthToken") || null,
+  profilePicture : "",
+  credits:0,
+  payment:false
 };
 
 const authSlice = createSlice({
@@ -24,6 +30,15 @@ const authSlice = createSlice({
     setToken(state, action: PayloadAction<string | null>) {
       state.token = action.payload;
     },
+    setProfilePicture(state, action: PayloadAction<string | null>) {
+      state.profilePicture = action.payload;
+    },
+    setCredits(state, action: PayloadAction<number>) {
+      state.credits = action.payload;
+    },
+    setPayment(state, action: PayloadAction<boolean>) {
+      state.payment = action.payload;
+    },
     resetauthState() {
       // Simply return the initialState to reset the state
       return initialState;
@@ -31,6 +46,6 @@ const authSlice = createSlice({
   },
 });
 
-export const {resetauthState, setToken, setLoading } = authSlice.actions;
+export const {resetauthState, setToken, setLoading ,setProfilePicture,setCredits,setPayment} = authSlice.actions;
 
 export default authSlice.reducer;

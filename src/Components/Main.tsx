@@ -115,8 +115,7 @@ const Main = () => {
       </a>
     </div>
   </div>
-</div>
-
+    </div>
   )
 }
 

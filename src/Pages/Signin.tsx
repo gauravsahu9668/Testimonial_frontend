@@ -2,13 +2,12 @@ import google from "../assets/google.png"
 import { Link, useNavigate } from "react-router-dom"
 import {useForm} from "react-hook-form"
 import { useDispatch } from "react-redux"
-import {  setToken } from "../slices/authReducer"
+import {  setCredits, setPayment, setProfilePicture, setToken } from "../slices/authReducer"
 import axiosConnect from "../server/axiosConnect"
 import toast from "react-hot-toast"
 import { useState } from "react"
 import { signInWithPopup,GoogleAuthProvider,signInWithEmailAndPassword, getAuth} from 'firebase/auth'
 import { app } from "../server/firebase"
-import { useSelector } from "react-redux"
 const auth=getAuth(app)
 const googleProvider=new GoogleAuthProvider();
 const Signin = () => {
@@ -16,7 +15,6 @@ const Signin = () => {
         email: string
         password: string
     }
-    const { token,userId} = useSelector((state: any) => state.auth);
     const [loader,setLoader]=useState(false)
     const navigator=useNavigate();
     const dispatch=useDispatch();
@@ -32,11 +30,12 @@ const Signin = () => {
             localStorage.setItem("AuthToken",response.data.token)
             localStorage.setItem("userId",response.data.userId)
             dispatch(setToken(response.data.token))
+            dispatch(setCredits(response.data.user.credits));
+            dispatch(setProfilePicture(response.data.user.profilepicture));
+            dispatch(setPayment(response.data.user.payment))
             setLoader(false)
             toast.success(response.data.message)
             navigator("/")
-            console.log(response)
-            console.log(token,userId)
           }
           else{
           setLoader(false)
@@ -54,15 +53,16 @@ const Signin = () => {
         setLoader(true)
         axiosConnect("/user/signin","POST",{email:response.user.email},"").then((response)=>{
           if(response?.data.success){
+            console.log(response.data.user)
             localStorage.setItem("AuthToken",response.data.token)
             localStorage.setItem("userId",response.data.userId)
-            console.log(response.data.token)
+            dispatch(setCredits(response.data.user.credits));
+            dispatch(setProfilePicture(response.data.user.profilepicture));
+            dispatch(setPayment(response.data.user.payment))
             dispatch(setToken(response.data.token))
             setLoader(false)
             toast.success(response.data.message)
             navigator("/")
-            console.log(response)
-            console.log(token,userId)
           }
           else{
           setLoader(false)

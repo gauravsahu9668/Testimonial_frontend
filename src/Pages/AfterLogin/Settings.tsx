@@ -1,21 +1,41 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { uploadFileDirectly } from "../../server/cloudinaryConnect";
+import axios from "axios";
+import { BACKEND_URL } from "../../server/axiosConnect";
+import { setProfilePicture } from "../../slices/authReducer";
+import toast from "react-hot-toast";
 const Settings: React.FC = () => {
   const [name, setName] = useState("Gaurav Sahu");
-  const [profilePicture] = useState(
-    "https://via.placeholder.com/150" // Replace with your image URL
-  );
-
-  const handleChangeProfilePicture = () => {
-    // Logic for changing profile picture
-    alert("Change Profile Picture button clicked!");
+  const { profilePicture}=useSelector((state:any)=>state.auth)
+  const [imageString,setimageString]=useState("");
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        console.log(file)
+        if(file){
+          uploadFileDirectly(file).then((result)=>{
+            console.log(result?.data.secure_url)
+            setimageString(result?.data.secure_url)
+          })
+        }
+      };
+      const dispatch=useDispatch()
+  const handleSaveProfile = async() => {
+    const toastId=toast.loading("Loading...");
+      await axios({
+        url:`${BACKEND_URL}/user/update-profile-picture`,
+        method:"POST",
+        data:{
+          profileUrl:imageString,
+          userId:localStorage.getItem("userId")
+        }
+      }).then((res)=>{
+        console.log(res)
+        dispatch(setProfilePicture(res.data.data));
+        toast.dismiss(toastId)
+        toast.success(res.data.message);
+      })
   };
-
-  const handleSaveProfile = () => {
-    // Logic for saving profile settings
-    alert("Profile saved successfully!");
-  };
-
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
@@ -88,24 +108,19 @@ const Settings: React.FC = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Profile picture
               </label>
-              <div className="flex items-center">
+              <div className="flex  items-center">
                 <img
-                  src={profilePicture}
+                  src={imageString==="" ? profilePicture: imageString}
                   alt="Profile"
                   className="w-16 h-16 rounded-full object-cover mr-4"
                 />
-                <button
-                  type="button"
-                  onClick={handleChangeProfilePicture}
-                  className="px-4 py-2 bg-gray-100 text-sm text-gray-700 border rounded-lg shadow-sm hover:bg-gray-200"
-                >
-                  Change
-                </button>
+               <input  onChange={(e:any)=>{handleFileChange(e)}} type="file" placeholder="Upload profile picture">
+               </input>
               </div>
             </div>
             <button
+            onClick={()=>handleSaveProfile()}
               type="button"
-              onClick={handleSaveProfile}
               className="mt-4 px-6 py-2 bg-blue-500 text-white text-sm font-medium rounded-lg shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Save my profile

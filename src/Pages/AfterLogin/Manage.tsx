@@ -13,6 +13,7 @@ import Text from "../../Components/Text"
 import Liked from "../../Components/Liked"
 import Video from "../../Components/Video"
 import EditSpace from "./EditSpace"
+import { Link } from "react-router-dom"
 interface thankyouState {
   thankyougif: string | null;
   thankyouTitle: string;
@@ -134,6 +135,8 @@ const Manage = () => {
     // const searchHandler=(e:any)=>{
     //   setseachQ(e.target.value)
     // }
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const toggleMenu = () => setIsOpen(!isOpen);
     const[textfilter,settextFilteredData]=useState<textReview[]>([]);
     const[videofilter,setvideoFilteredData]=useState<videReview[]>([]);
     const searchHandler = (e:any) => {
@@ -221,10 +224,68 @@ const Manage = () => {
 
       {/* Additional Sidebar Options */}
       <div className="mt-10">
-        <div className="p-3 mb-3 rounded-lg text-black hover:bg-gray-700 font-medium cursor-pointer">Integrations</div>
-        <div className="p-3 mb-3 rounded-lg text-black hover:bg-gray-700 font-medium cursor-pointer">Embed Widgets</div>
-        
-      </div>
+        <div className="p-3 mb-3 rounded-lg text-black   ml-1 font-medium cursor-pointer">Integrations</div>
+          <div className="w-full rounded p-4">
+              <div
+        onClick={toggleMenu}
+        className="flex items-center justify-between cursor-pointer"
+      >
+        <span className="font-semibold text-gray-700">Embed widgets</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className={`w-4 h-4 transition-transform transform ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+              </div>
+              {isOpen && (
+          <div className="mt-4 space-y-3 text-gray-600">
+          <div className="flex items-center cursor-pointer gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 5v14m7-7H5"
+              />
+            </svg>
+            <Link to="/walloflove">
+                 <span>Wall of Love</span>
+            </Link>
+          </div>
+          <div className="flex cursor-pointer items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 10h7V7h4v3h7M4 21v-2h16v2M7 7l-4 7m14-7l4 7"
+              />
+            </svg>
+            <Link to={`/analytics/${id}`}>
+            <span>Analytics</span>
+            </Link>
+          </div>
+          </div>
+      )}
+          </div>
+         </div>
         </div>
         <div className="ml-[20%] w-[80%]   p-6 ">
         <div className="mb-6 w-[75%] flex items-center gap-y-3 mx-auto"> 

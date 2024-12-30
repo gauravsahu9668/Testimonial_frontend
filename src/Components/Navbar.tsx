@@ -2,7 +2,6 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 import likeLogo from "../assets/like.png"
 import { useDispatch, useSelector } from "react-redux";
-import google from "../assets/google.png"
 import {navData} from "../data/navlinks"
 import { useState } from "react";
 import { resetauthState, setToken } from "../slices/authReducer";
@@ -10,12 +9,12 @@ import { resetForm1State } from "../slices/form1Reducer";
 import { resetExtraState } from "../slices/extraReducer";
 import { resetThankyouState } from "../slices/thankyouReducer";
 function Navbar() {
-    const {token}=useSelector((state:any)=>state.auth)
     const [linkBox,setlinkbox] =useState(false);
     const navigate=useNavigate();
     const setnavBar:any=()=>{
         setlinkbox(!linkBox)
     }
+    const { token,profilePicture} = useSelector((state: any) => state.auth);
     const dispatch=useDispatch();
     const signoutFunction=async()=>{
       localStorage.removeItem("AuthToken");
@@ -91,7 +90,6 @@ function Navbar() {
     //         }
     // </nav>
     <nav className="h-[75px] w-full flex justify-between items-center px-6 md:px-10 bg-[#F9FAFB] border-b-[1px] border-[#ECF1F4] shadow-sm">
-    {/* Logo and Branding */}
     <div
       className="flex items-center cursor-pointer"
       onClick={() => navigate("/")}
@@ -156,7 +154,7 @@ function Navbar() {
         onClick={setnavBar}
       >
         <img
-          src={google}
+          src={profilePicture}
           alt="Profile"
           className="w-full h-full rounded-full"
         />

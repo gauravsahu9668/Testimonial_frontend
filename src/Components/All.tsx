@@ -16,8 +16,6 @@ interface VideoReviewProps {
     textReview:textReview[]
     videoReview: videReview[]
 }
-import { CiShare2 } from "react-icons/ci";
-import { MdDownload } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import { CiSquareMore } from "react-icons/ci";
 import { FcLikePlaceholder } from "react-icons/fc";
@@ -51,30 +49,6 @@ const All: React.FC<VideoReviewProps> = ({ textReview,videoReview}) => {
         {
             textReview.map((data,index)=>{
                 return (
-                    // <div key={index} className="flex flex-row w-[70%] mx-auto">
-                    //     <div className="flex flex-col w-[50%] p-1 items-start gap-y-3">
-                    //         <div className="bg-[#39b155] flex items-center justify-center rounded-full px-4 ">Text</div>
-                    //         <div>
-                    //         {data.starRating}
-                    //         {/* <StarRatings
-                    //              rating={data.starRating}
-                    //              starRatedColor="gold"
-                    //              starHoverColor="gold"
-                    //              numberOfStars={5}
-                    //              starDimension="20px"
-                    //              starSpacing="5px"
-                    //              name={`rating-${index}`}
-                    //              /> */}
-                    //         </div>
-                    //         <div>{data.custMessage}</div>
-                    //         <img className="w-[70%] h-[200px] rounded-lg" src={data.reviewImage}></img>
-                    //     </div>
-                    //     <div className="flex flex-col w-[50%] p-1 items-center gap-y-3">
-                    //       <img className="w-[40%] h-[40%] rounded-full" src={data.custPorfilePicture}></img>
-                    //       <div>{data.custName}</div>
-                    //       <div>{data.custEmail}</div>
-                    //     </div>
-                    // </div>
                     <div className="flex relative flex-col w-[70%] my-6 mx-auto  bg-[#FAF5FF] shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
                         <div onClick={()=>{likeHandler(data.textReview_id,!data.Liked,"text")}} className="absolute right-4 top-4 w-[40px] h-[40px] group ">
                                                     {
@@ -107,39 +81,26 @@ const All: React.FC<VideoReviewProps> = ({ textReview,videoReview}) => {
                                                 </div>
                                             </div>
                     </div>
-                    <div className="w-full flex justify-end items-center  p-2">
-                                            <div className="w-[40%] mr-6 py-2 text-[#706f6f] font-semibold flex items-center justify-between">
-                                                <div className="flex cursor-pointer items-center gap-x-1 px-2 rounded-lg hover:bg-[#c5bebe]">
-                                                    <CiShare2></CiShare2>
-                                                    share
-                                                </div>
-                                                <div  className="flex cursor-pointer items-center px-2 gap-x-1 rounded-lg hover:bg-[#c5bebe]">
-                                                    <MdDownload></MdDownload>
-                                                    download
-                                                </div>
-                                                <div  className="flex cursor-pointer items-center px-2 gap-x-1 rounded-lg hover:bg-[#c5bebe]">
-                                                    <MdDeleteOutline></MdDeleteOutline>
-                                                    delete
-                                                </div>
-                                                <div  className="flex cursor-pointer items-center px-2 gap-x-1 rounded-lg hover:bg-[#c5bebe]">
-                                                    <CiSquareMore></CiSquareMore>
-                                                    more
-                                                </div>
-                                            </div>
+                    <div className="w-full flex  items-center  p-2">
+                       <div className="w-[40%] mr-6 py-2 text-[#706f6f] font-semibold flex items-center justify-end ml-auto">
+                        <div  className="flex cursor-pointer items-center px-2 gap-x-1 rounded-lg hover:bg-[#c5bebe]">
+                        <MdDeleteOutline></MdDeleteOutline>
+                            delete
+                        </div>
+                        <div  className="flex cursor-pointer items-center px-2 gap-x-1 rounded-lg hover:bg-[#c5bebe]">
+                        <CiSquareMore></CiSquareMore>
+                            more
+                        </div>
+                       </div>
                     </div>
                     </div>
                 )
             })
         }
         {
-            videoReview.map((data,index)=>{
+           videoReview.map((data,index)=>{
                 return (
                     <div className="flex relative flex-col w-[70%] my-6 mx-auto  bg-[#FAF5FF] shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-                    {/* <div  className="absolute right-4 top-4 w-[40px] h-[40px] group ">
-                        {
-                            <FcLikePlaceholder size={"2rem"} className="cursor-pointer"></FcLikePlaceholder>
-                        }
-                    </div> */}
                      <div onClick={()=>{likeHandler(data.videoReview_id,!data.Liked,"video")}} className="absolute right-4 top-4 w-[40px] h-[40px] group ">
                                                     {
                                                        data.Liked===true? <FcLike size={"2rem"} className="cursor-pointer" ></FcLike> : <FcLikePlaceholder size={"2rem"} className="cursor-pointer"></FcLikePlaceholder>
@@ -175,16 +136,8 @@ const All: React.FC<VideoReviewProps> = ({ textReview,videoReview}) => {
                                             </div>
                                         </div>
                 </div>
-                <div className="w-full flex justify-end items-center  p-2">
-                                        <div className="w-[40%] mr-6 py-2 text-[#706f6f] font-semibold flex items-center justify-between">
-                                            <div className="flex cursor-pointer items-center gap-x-1 px-2 rounded-lg hover:bg-[#c5bebe]">
-                                                <CiShare2></CiShare2>
-                                                share
-                                            </div>
-                                            <div  className="flex cursor-pointer items-center px-2 gap-x-1 rounded-lg hover:bg-[#c5bebe]">
-                                                <MdDownload></MdDownload>
-                                                download
-                                            </div>
+                <div className="w-full flex  items-center  p-2">
+                                        <div className="w-[40%] ml-auto mr-6 py-2 text-[#706f6f] font-semibold flex items-center justify-end">
                                             <div  className="flex cursor-pointer items-center px-2 gap-x-1 rounded-lg hover:bg-[#c5bebe]">
                                                 <MdDeleteOutline></MdDeleteOutline>
                                                 delete
