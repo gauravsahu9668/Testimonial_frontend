@@ -26,6 +26,7 @@ const Signin = () => {
       signInWithEmailAndPassword(auth,data.email,data.password).then(()=>{
         setLoader(true)
         axiosConnect("/user/signin","POST",{email:data.email},"").then((response)=>{
+          console.log(response)
           if(response?.data.success){
             localStorage.setItem("AuthToken",response.data.token)
             localStorage.setItem("userId",response.data.userId)
@@ -72,71 +73,19 @@ const Signin = () => {
       })
     }
   return (
-    // <>{
-    //   loader ?
-    //   <div className="w-full min-h-[100vh] flex items-center justify-center bg-[#F9FAFB]">
-    //   <div className="h-12 w-12 border-4 border-t-[#2563EB] border-[#E5E7EB] rounded-full animate-spin"></div>
-    // </div> : 
-    //       <div className="w-full min-h-[100vh] flex flex-col bg-[#EEF3F6]">
-    //       <div className="w-full text-center text-[#151719] mt-16 font-bold text-[35px] sm:text-[28px]">
-    //         Welcome back
-    //       </div> 
-    //       <div className="w-[90%] sm:w-[60%] md:w-[40%] mx-auto p-5 bg-white mt-16">
-    //         <div onClick={signinwithgoogle} className="w-full cursor-pointer p-3 bg-[#F5F8FA] border-[1px] rounded-sm flex flex-row">
-    //           <div className="border-r-[1px] rounded-sm flex items-center justify-center w-[15%] sm:w-[10%]">
-    //             <img src={google} className="w-[23px]"></img>
-    //           </div>
-    //           <div className="w-full text-center text-[20px] sm:text-[18px] text-[#78909C]">
-    //             Sign in with Google
-    //           </div>
-    //         </div>
-    //         <div className="flex mt-5 flex-row items-center justify-between text-center text-[16px] sm:text-[14px] text-[#78909C]">
-    //           <div className="h-[1px] w-[25%] bg-gray-500"></div>
-    //           <p>Or, sign in with your email</p>
-    //           <div className="h-[1px] w-[25%] bg-gray-500"></div>
-    //         </div>
-    //         <div>
-    //           <form onSubmit={handleSubmit(submitFormHandler)}>
-    //             <div className="mt-10 flex flex-col items-start gap-y-1">
-    //               <label htmlFor="email" className="text-[16px] sm:text-[14px] text-[#78909C]">Email</label>
-    //               <input id="email" {...register("email")} type="email" placeholder="Your email" className="outline-none w-full p-2 text-[20px] sm:text-[18px] focus:border-2 focus:border-blue-500 text-[#78909C] border-[1px] border-gray-600"></input>
-    //               {errors.email && <span>Enter email</span>}
-    //             </div>
-    //             <div className="mt-3 flex flex-col items-start gap-y-1">
-    //               <label htmlFor="password" className="text-[16px] sm:text-[14px] text-[#78909C]">Password</label>
-    //               <input id="password" {...register("password")} type="password" placeholder="Enter password" className="outline-none w-full p-2 text-[20px] sm:text-[18px] focus:border-2 focus:border-blue-500 text-[#78909C] border-[1px] border-gray-600"></input>
-    //               {errors.password && <span>Enter password</span>}
-    //             </div>
-    //             <p className="mt-2 text-[16px] sm:text-[14px] text-[#78909C]">Forgot password?</p>
-    //             <button type="submit" className="text-white mt-6 rounded-sm font-semibold text-[16px] sm:text-[14px] w-full py-2 bg-[#5D5DFF] hover:bg-[#4b4bfb]">
-    //               Sign in
-    //             </button>
-    //           </form>
-    //           <div className="w-full flex items-center gap-x-1 justify-center flex-row mt-4">
-    //             <p className="text-[#757D86]">Don't have an account?</p>
-    //             <Link to="/signup" className="text-[#5377c3] hover:text-[#738cc1]">Sign up</Link>
-    //           </div>
-    //         </div>
-    //       </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-    //   </div>
-    //   }
-    //  </>
     <>
   {loader ? (
     <div className="w-full min-h-[100vh] flex items-center justify-center bg-[#F9FAFB]">
       <div className="h-12 w-12 border-4 border-t-[#007BFF] border-[#E9ECEF] rounded-full animate-spin"></div>
     </div>
   ) : (
-    <div className="w-full min-h-[100vh] flex flex-col bg-[#F9FAFB]">
-      <div className="w-full text-center text-[#212529] mt-16 font-semibold text-[28px] md:text-[35px]">
-        Welcome back
-      </div>
-      <div className="w-[90%] sm:w-[60%] md:w-[40%] mx-auto p-6 bg-white mt-10 md:mt-16 shadow-md rounded-lg">
+    <div className="w-full min-h-[100vh] flex flex-col bg-zinc-900">
+      <div className="w-[90%] mt-24 sm:w-[60%] md:w-[35%] mx-auto p-6 rounded-xl shadow-[0_0_50px_rgba(16,185,129,0.15)] hover:shadow-[0_0_50px_rgba(16,185,129,0.25)] transition-shadow duration-300  md:mt-24">
         <div
           onClick={signinwithgoogle}
-          className="w-full cursor-pointer p-3 bg-[#F1F3F5] border rounded-lg flex items-center hover:shadow-md"
+          className="bg-black/40 flex cursor-pointer  hover:bg-black/60 px-8 py-3 rounded-lg font-medium transition-all duration-200 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]"
         >
-          <div className="border-r pr-3 flex items-center justify-center">
+          <div className=" pr-3 flex items-center justify-center">
             <img src={google} className="w-[20px] md:w-[25px]" alt="Google" />
           </div>
           <div className="w-full text-center text-[16px] md:text-[18px] text-[#495057]">
@@ -152,7 +101,7 @@ const Signin = () => {
           <div className="flex flex-col items-start gap-y-1">
             <label
               htmlFor="email"
-              className="text-[14px] md:text-[16px] text-[#495057]"
+              className="text-[14px] md:text-[16px] text-[#747678]"
             >
               Email
             </label>
@@ -161,7 +110,7 @@ const Signin = () => {
               {...register("email")}
               type="email"
               placeholder="Enter your email"
-              className="w-full p-3 text-[16px] md:text-[18px] border rounded-lg outline-none focus:ring-2 focus:ring-[#007BFF] text-[#495057]"
+              className="w-full p-3 text-[16px] bg-[#171515]  md:text-[18px]  rounded-lg outline-none focus:ring-2 focus:ring-[#22C55E] text-[#333333]"
             />
             {errors.email && (
               <span className="text-[12px] text-[#D9534F]">
@@ -172,7 +121,7 @@ const Signin = () => {
           <div className="mt-4 flex flex-col items-start gap-y-1">
             <label
               htmlFor="password"
-              className="text-[14px] md:text-[16px] text-[#495057]"
+              className="text-[14px] md:text-[16px] text-[#747678]"
             >
               Password
             </label>
@@ -181,7 +130,7 @@ const Signin = () => {
               {...register("password")}
               type="password"
               placeholder="Enter your password"
-              className="w-full p-3 text-[16px] md:text-[18px] border rounded-lg outline-none focus:ring-2 focus:ring-[#007BFF] text-[#495057]"
+              className="w-full p-3 text-[16px] bg-[#171515] md:text-[18px]  rounded-lg outline-none focus:ring-2 focus:ring-[#22C55E] text-[#333333]"
             />
             {errors.password && (
               <span className="text-[12px] text-[#D9534F]">
@@ -189,12 +138,12 @@ const Signin = () => {
               </span>
             )}
           </div>
-          <p className="mt-3 text-[14px] md:text-[16px] text-[#007BFF] cursor-pointer hover:underline">
+          <p className="mt-3 text-[14px] md:text-[16px] text-[#22C55E] cursor-pointer hover:underline">
             Forgot password?
           </p>
           <button
             type="submit"
-            className="w-full py-3 mt-6 text-[16px] md:text-[18px] font-semibold text-white bg-[#007BFF] hover:bg-[#0056B3] rounded-lg shadow-sm"
+            className="bg-gradient-to-r w-full items-center justify-center mt-5 gap-x-2 from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]"
           >
             Sign in
           </button>
@@ -205,7 +154,7 @@ const Signin = () => {
           </span>
           <Link
             to="/signup"
-            className="text-[14px] md:text-[16px] text-[#007BFF] hover:underline"
+            className="text-[14px] md:text-[16px] text-[#22C55E] hover:underline"
           >
             Sign up
           </Link>

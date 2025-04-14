@@ -118,79 +118,23 @@ const BasicRight = () => {
       setallQuestions(form1State.questions)
     })
   return (
-    // <div className="w-[45%] p-5 min-h-[100vh] border-t-2 mb-24 rounded-md  absolute right-32 top-10">
-    //      <h1 className="w-full text-[40px] font-bold text-center text-[#25282C]">Create a new Space</h1>
-    //      <p className="text-center text-[20px] w-[90%] mt-4 mx-auto text-[#55595F]">After the Space is created, it will generate a dedicated page for collecting testimonials.</p>
-    //      <div className="flex flex-col text-[#55595F] w-full justify-center mt-20">
-    //      <label  htmlFor="space-name">
-    //       Space name *
-    //      </label>
-    //      <input value={form1State.spaceName} onChange={(e)=>{dispatch(setSpaceName(e.target.value))}} className="outline-none focus:border-[#2563EB] focus:border-[2px] p-2 rounded-md mt-3 border-[1px] border-[#E2E8ED]" type="text" id="space-name" required></input>
-    //      </div>
-    //      <div className="mt-4 flex flex-col ">
-    //        <label htmlFor="image-file" className="text-[#55595F]">Space logo *</label>
-    //         <div className="flex flex-row w-fit mt-4 items-center gap-x-6">
-    //         <div className=" w-[80px] h-[50px] rounded-md  bg-[#EBF1F5]">
-    //         {imageString && <img  src={imageString} className="w-full h-full rounded-md" alt="logo"></img>}
-    //         </div>
-    //         <input onChange={handleFileChange} id="image-file" accept="image/*" type="file"></input>
-    //         </div>
-    //      </div>
-    //      <div className="flex mt-6 flex-col text-[#55595F] w-full justify-center">
-    //         <label id="header">Header title*</label>
-    //         <input value={form1State.headerTitle}  onChange={(e)=>{dispatch(setHeaderTitle(e.target.value))}} className="outline-none  focus:border-[#2563EB] focus:border-[2px] p-2 rounded-md mt-3 border-[1px] border-[#E2E8ED]" type="text" placeholder="Would you like to give a shoutout for xyz" id="header"></input>
-    //      </div>
-    //      <div className="flex mt-6 flex-col text-[#55595F] w-full justify-center">
-    //         <label htmlFor="message">Your custom message</label>
-    //         <textarea value={form1State.customMessage} onChange={(e)=>{dispatch(setCustomMessage(e.target.value))}} className="outline-none  focus:border-[#2563EB] focus:border-[2px] p-2 rounded-md mt-3 border-[1px] border-[#E2E8ED]" id="message" rows={4} cols={50} required placeholder="Write a warm message to your customers, give them simple directions on how to make the best testimonials"></textarea>
-    //      </div>
-    //      <div className="flex flex-col w-full items-start mt-4">
-    //         <h2 className="text-[20px] text-[#4E4F54] flex items-center">Questions
-    //          <LiaQuestionSolid ></LiaQuestionSolid>
-    //         </h2>
-    //         <div className="w-full flex ">
-    //         <input className="outline-none  focus:border-[#2563EB] focus:border-[2px] p-2 rounded-md mt-3 border-[1px] w-[70%] border-[#E2E8ED]" type="text" value={currentQuestion} onChange={handleInputChange} placeholder="Enter your question" />
-    //         <button className="flex items-center ml-4 gap-x-2 " onClick={handleAddQuestion}><IoIosAddCircleOutline></IoIosAddCircleOutline>Add One (up to 5)</button>
-    //         </div>
-    //         <div className="flex flex-col py-2 mt-6 w-full items-start">
-    //             {allquestions.map((question, index) => (
-    //                 <div key={index} className="flex flex-row w-full mt-3 text-[#1b4256]  items-center gap-x-4 ">
-    //                     <div className="w-[10px] h-[10px] rounded-md bg-[#8a8a8e]">
-    //                     </div>
-    //                     <div className="w-[80%]">{question}</div>
-    //                     <button onClick={() => handleDeleteQuestion(index)}><RiDeleteBin6Line></RiDeleteBin6Line></button>
-    //                 </div>
-    //             ))}
-    //         </div>
-    //      </div>
-    //      {
-    //       paths[2]==='new'?  
-    //       <button onClick={submitFormHandler}  className="text-center w-full rounded-md mt-10 mb-10 py-3 bg-[#4B4ACF] ">
-    //       Create new space
-    //       </button>
-    //       :
-    //       <button onClick={updateSpace}   className="text-center w-full rounded-md mt-10 mb-10 py-3 bg-[#4B4ACF] ">
-    //        Update Space
-    //       </button>
-    //      }
-    // </div>
-    <div className="w-[45%] max-w-[700px] min-h-[100vh] p-6  mt-16 absolute right-32 top-10 rounded-lg bg-white shadow-md">
-  <h1 className="text-[36px] font-bold text-center text-[#1F2937] mb-4">
+    <div className="w-full mb-7  min-h-[100vh] p-4 md:p-8 bg-[#020203] mx-auto rounded-lg shadow-md">
+  <h1 className="text-[36px] font-bold text-center text-[#c9cacd] mb-4">
     Create a New Space
   </h1>
-  <p className="text-[18px] text-center text-[#4B5563] mb-8">
+  <p className="text-[18px] text-center text-[#adaeae] mb-8">
     After the Space is created, it will generate a dedicated page for collecting testimonials.
   </p>
 
   {/* Space Name */}
   <div className="flex flex-col mb-6">
-    <label htmlFor="space-name" className="text-[#374151] font-medium mb-2">
+    <label htmlFor="space-name" className="text-[#c9cacd] font-medium mb-2">
       Space Name *
     </label>
     <input
       value={form1State.spaceName}
       onChange={(e) => dispatch(setSpaceName(e.target.value))}
-      className="w-full p-3 border-[1px] rounded-md text-[#4B5563] focus:border-[#2563EB] focus:ring focus:ring-blue-200 outline-none"
+      className="w-full p-3 text-[16px] bg-[#171515] md:text-[18px]  rounded-lg outline-none focus:ring-1 focus:ring-[#83e3e1] text-white"
       type="text"
       id="space-name"
       placeholder="Enter space name"
@@ -200,7 +144,7 @@ const BasicRight = () => {
 
   {/* Space Logo */}
   <div className="flex flex-col mb-6">
-    <label htmlFor="image-file" className="text-[#374151] font-medium mb-2">
+    <label htmlFor="image-file" className="text-[#c9cacd] font-medium mb-2">
       Space Logo *
     </label>
     <div className="flex items-center gap-4">
@@ -225,13 +169,13 @@ const BasicRight = () => {
 
   {/* Header Title */}
   <div className="flex flex-col mb-6">
-    <label htmlFor="header-title" className="text-[#374151] font-medium mb-2">
+    <label htmlFor="header-title" className="text-[#c9cacd] font-medium mb-2">
       Header Title *
     </label>
     <input
       value={form1State.headerTitle}
       onChange={(e) => dispatch(setHeaderTitle(e.target.value))}
-      className="w-full p-3 border-[1px] rounded-md text-[#4B5563] focus:border-[#2563EB] focus:ring focus:ring-blue-200 outline-none"
+      className="w-full p-3 text-[16px] bg-[#171515] md:text-[18px]  rounded-lg outline-none focus:ring-1 focus:ring-[#83e3e1] text-white"
       type="text"
       id="header-title"
       placeholder="E.g., Would you like to give a shoutout for xyz"
@@ -240,13 +184,13 @@ const BasicRight = () => {
 
   {/* Custom Message */}
   <div className="flex flex-col mb-6">
-    <label htmlFor="message" className="text-[#374151] font-medium mb-2">
+    <label htmlFor="message" className="text-[#c9cacd] font-medium mb-2">
       Your Custom Message
     </label>
     <textarea
       value={form1State.customMessage}
       onChange={(e) => dispatch(setCustomMessage(e.target.value))}
-      className="w-full p-3 border-[1px] rounded-md text-[#4B5563] focus:border-[#2563EB] focus:ring focus:ring-blue-200 outline-none"
+      className="w-full p-3 text-[16px] bg-[#171515] md:text-[18px]  rounded-lg outline-none focus:ring-1 focus:ring-[#83e3e1] text-white"
       id="message"
       rows={4}
       placeholder="Write a warm message to your customers, giving them simple directions on making the best testimonials."
@@ -256,22 +200,22 @@ const BasicRight = () => {
 
   {/* Questions Section */}
   <div className="mb-6">
-    <h2 className="text-[20px] text-[#374151] font-medium flex items-center gap-2">
+    <h2 className="text-[20px] text-[#c9cacd] font-medium flex items-center gap-2">
       Questions <LiaQuestionSolid />
     </h2>
     <div className="flex mt-3 gap-4">
       <input
-        className="flex-grow p-3 border-[1px] rounded-md text-[#4B5563] focus:border-[#2563EB] focus:ring focus:ring-blue-200 outline-none"
+        className="w-full p-3 text-[16px] bg-[#171515] md:text-[18px]  rounded-lg outline-none focus:ring-1 focus:ring-[#83e3e1] text-white"
         type="text"
         value={currentQuestion}
         onChange={handleInputChange}
         placeholder="Enter your question"
       />
       <button
-        className="px-4 py-2 bg-[#2563EB] text-white rounded-md flex items-center gap-2 hover:bg-blue-600 transition-all"
+        className="md:px-1 md:py-2 bg-[#10b888] w-[25%] justify-center text-white rounded-md flex items-center gap-2  transition-all"
         onClick={handleAddQuestion}
       >
-        <IoIosAddCircleOutline /> Add (up to 5)
+        <IoIosAddCircleOutline /> Add (5)
       </button>
     </div>
 
@@ -280,9 +224,9 @@ const BasicRight = () => {
       {allquestions.map((question, index) => (
         <div
           key={index}
-          className="flex items-center gap-4 py-2 border-b-[1px] text-[#1F2937]"
+          className="flex items-center gap-4 py-2  text-[#c9cacd]"
         >
-          <div className="w-3 h-3 bg-[#6B7280] rounded-full"></div>
+          <div className="w-3 h-3 bg-[#c9cacd] rounded-full"></div>
           <span className="flex-grow">{question}</span>
           <button onClick={() => handleDeleteQuestion(index)}>
             <RiDeleteBin6Line className="text-red-500" />
@@ -296,14 +240,14 @@ const BasicRight = () => {
   {paths[2] === "new" ? (
     <button
       onClick={submitFormHandler}
-      className="w-full py-3 text-white bg-[#2563EB] rounded-md hover:bg-blue-600 transition-all"
+      className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]"
     >
       Create New Space
     </button>
   ) : (
     <button
       onClick={updateSpace}
-      className="w-full py-3 text-white bg-[#2563EB] rounded-md hover:bg-blue-600 transition-all"
+      className="bg-gradient-to-r w-full flex items-center justify-center from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]"
     >
       Update Space
     </button>

@@ -132,11 +132,7 @@ const Manage = () => {
           console.log(e)
         }
     };
-    // const searchHandler=(e:any)=>{
-    //   setseachQ(e.target.value)
-    // }
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const toggleMenu = () => setIsOpen(!isOpen);
+    const[showTabs,setshowtabs]=useState(false)
     const[textfilter,settextFilteredData]=useState<textReview[]>([]);
     const[videofilter,setvideoFilteredData]=useState<videReview[]>([]);
     const searchHandler = (e:any) => {
@@ -167,51 +163,35 @@ const Manage = () => {
     },[])
   return (
     <>{
-      //   loader ? 
-      // <div className="w-full min-h-[100vh] flex items-center justify-center bg-[#cacaca]">
-      // <div className="h-12 w-12 border-4  border-t-[#5D5DFF] border-gray-600 rounded-full animate-spin"></div>
-      //  </div>
-      //   :
-  <div className="w-full max-h-[cal(100vh-75px)] flex flex-col bg-white text-white">
-    <div className="flex items-center justify-between bg-[#FAF5FF] px-6 py-4 ">
-    <div className="flex items-center gap-x-6 text-black ">
-      <img
-        src={space.spaceLogo}
+     <div className="w-[100vw]  mt-16 bg-[#18181b] flex flex-col  text-white">
+      <div className="  flex items-center justify-between bg-[#111113] px-6 py-4 ">
+            <div className="flex items-center gap-x-6 text-[#e0dfdf]">
+             <img
+             src={space.spaceLogo}
         alt="Space Logo"
-        className="w-[150px] h-[100px] object-cover rounded-lg"
-      />
-      <h1 className="text-2xl text-black font-semibold">{space.spaceName}</h1>
-    </div>
-    <div className="flex items-center gap-x-8">
-      <div className="text-center">
-        <p className="text-sm text-[#1b1b1b] font-medium">Video Credits</p>
-        <span className="text-[#393939] text-lg font-semibold">2</span>
+        className="w-[150px] h-[100px] object-cover rounded-xl shadow-[0_0_50px_rgba(16,185,129,0.15)] hover:shadow-[0_0_50px_rgba(16,185,129,0.25)] transition-shadow duration-300"
+             />
+             <div className="flex flex-col gap-y-8">
+       <h1 className="text-2xl text-[#e0dfdf] font-semibold">{space.spaceName}</h1>
+       <EditSpace spaceId={id} thankyou={thankyou} space={space} Extras={Extras} notification={Notify}></EditSpace>
+             </div>
+            </div>
       </div>
-      <div className="text-center">
-        <p className="text-sm text-[#1b1b1b] font-medium">Text Credits</p>
-        <span className="text-[#393939] text-lg font-semibolf">10</span>
-      </div>
-      {/* <button className="px-4 py-2 border border-teal-400 rounded-lg hover:bg-teal-600 hover:text-white">
-        Edit Space
-      </button> */}
-      <EditSpace spaceId={id} thankyou={thankyou} space={space} Extras={Extras} notification={Notify}></EditSpace>
-    </div>
-    </div>
-    <div className="flex relative">
-        <div className="w-[20%] text-[black] h-[cal(100vh-223px)]  bg-[#FAF5FF] p-6 absolute left-0 top-0 ">
-      <h2 className="mb-6 text-lg font-semibold text-[black]">Inbox</h2>
-      {inboxData.map((data, index) => (
-        <div
+      <div className="flex flex-col lg:flex-row w-full ">
+           <div className="w-[18%] hidden lg:flex flex-col text-[black] bg-[#111113] p-6 min-h-[70vh]">
+           <h2 className="mb-6 text-lg font-semibold text-[#aeaeae]">Inbox</h2>
+           {inboxData.map((data, index) => (
+           <div
           key={index}
           className={`flex items-center gap-x-4 p-3 mb-3 rounded-lg cursor-pointer ${
-            inbox === data.text ? "bg-gray-300 text-[#363535] font-medium" : " text-[black] hover:bg-gray-200"
+            inbox === data.text ? " text-[#aeaeae] rounded-xl shadow-[0_0_50px_rgba(16,185,129,0.15)] hover:shadow-[0_0_50px_rgba(16,185,129,0.25)] transition-shadow duration-300" : "px-3 py-2 rounded-xl  hover:shadow-[0_0_50px_rgba(16,185,129,0.25)]  text-sm font-medium text-gray-300 hover:text-white hover:bg-black/40 flex items-center space-x-2 transition-all duration-200 ease-in-out cursor-pointerhover:shadow-lg hover:shadow-emerald-500/10"
           }`}
           onClick={() => setInbox(data.text)}
         >
-          {data.text === "Liked" && <SlLike className="text-lg  text-[#363535]" />}
-          {data.text === "All" && <IoMdWallet className="text-lg  text-[#363535]" />}
-          {data.text === "Video" && <IoVideocam className="text-lg  text-[#363535]" />}
-          {data.text === "Text" && <BsChatText className="text-lg text-[#363535]" />}
+          {data.text === "Liked" && <SlLike size={'2rem'} className="text-lg  text-[#aeaeae]" />}
+          {data.text === "All" && <IoMdWallet size={'2rem'} className="text-lg  text-[#aeaeae]" />}
+          {data.text === "Video" && <IoVideocam size={'2rem'} className="text-lg  text-[#aeaeae]" />}
+          {data.text === "Text" && <BsChatText size={'2rem'} className="text-lg text-[#aeaeae]" />}
           <span>{data.text}</span>
            <div className="flex items-center justify-end w-full text-end pr-3">
            {data.text==="All" && `${totalreview}`}
@@ -219,34 +199,9 @@ const Manage = () => {
             {data.text==="Video" && `${videoReview.length}`}
           { data.text==="Liked" && `${liked}`}
            </div>
-        </div>
-      ))}
-
-      {/* Additional Sidebar Options */}
-      <div className="mt-10">
-        <div className="p-3 mb-3 rounded-lg text-black   ml-1 font-medium cursor-pointer">Integrations</div>
-          <div className="w-full rounded p-4">
-              <div
-        onClick={toggleMenu}
-        className="flex items-center justify-between cursor-pointer"
-      >
-        <span className="font-semibold text-gray-700">Embed widgets</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className={`w-4 h-4 transition-transform transform ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
-        </svg>
-              </div>
-              {isOpen && (
-          <div className="mt-4 space-y-3 text-gray-600">
-          <div className="flex items-center cursor-pointer gap-2">
+           </div>
+           ))}
+          <div className="flex pl-2 mt-4 items-center text-[#bfbebe] cursor-pointer gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -264,58 +219,70 @@ const Manage = () => {
                  <span>Wall of Love</span>
             </Link>
           </div>
-          <div className="flex cursor-pointer items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="w-5 h-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 10h7V7h4v3h7M4 21v-2h16v2M7 7l-4 7m14-7l4 7"
-              />
-            </svg>
-            <Link to={`/analytics/${id}`}>
-            <span>Analytics</span>
-            </Link>
           </div>
+          <div className="w-full p-3 flex flex-col lg:hidden">
+             <div className="flex  rounded-md p-3 w-full items-center justify-between ">
+              <span className="text-[#dedddd]">Inbox</span>
+               <button onClick={()=>setshowtabs(!showTabs)} className="text-[#dedddd]">{showTabs? "close":"open"}</button>
+             </div>
+             <div>
+                 { showTabs && (
+                  <>
+                  {inboxData.map((data, index) => (
+           <div
+          key={index}
+          className={`flex items-center gap-x-4 p-3 mb-3 rounded-lg cursor-pointer ${
+            inbox === data.text ? " text-[#aeaeae] rounded-xl shadow-[0_0_50px_rgba(16,185,129,0.15)] hover:shadow-[0_0_50px_rgba(16,185,129,0.25)] transition-shadow duration-300" : "px-3 py-2 rounded-xl  hover:shadow-[0_0_50px_rgba(16,185,129,0.25)]  text-sm font-medium text-gray-300 hover:text-white hover:bg-black/40 flex items-center space-x-2 transition-all duration-200 ease-in-out cursor-pointerhover:shadow-lg hover:shadow-emerald-500/10"
+          }`}
+          onClick={() => {setInbox(data.text) ;setshowtabs(false)}}
+        >
+          {data.text === "Liked" && <SlLike size={'2rem'} className="text-lg  text-[#aeaeae]" />}
+          {data.text === "All" && <IoMdWallet size={'2rem'} className="text-lg  text-[#aeaeae]" />}
+          {data.text === "Video" && <IoVideocam size={'2rem'} className="text-lg  text-[#aeaeae]" />}
+          {data.text === "Text" && <BsChatText size={'2rem'} className="text-lg text-[#aeaeae]" />}
+          <span>{data.text}</span>
+           <div className="flex items-center justify-end w-full text-end pr-3">
+           {data.text==="All" && `${totalreview}`}
+            {data.text==="Text" && `${textReview.length}`}
+            {data.text==="Video" && `${videoReview.length}`}
+          { data.text==="Liked" && `${liked}`}
+           </div>
+           </div>
+                   ))}
+                  </>
+                 )
+                 }
+             </div>
           </div>
-      )}
-          </div>
-         </div>
-        </div>
-        <div className="ml-[20%] w-[80%]   p-6 ">
-        <div className="mb-6 w-[75%] flex items-center gap-y-3 mx-auto"> 
+        <div className="w-full lg:w-[82%] flex flex-col px-2">
+        <div className="mt-3 w-full  flex items-center gap-y-3 mx-auto"> 
         <input
           onChange={searchHandler}
           type="text"
           placeholder="Search testimonial by name,rating and time"
-          className=" px-4 w-[75%] py-3 rounded-sm border shadow-sm border-gray-200  text-black focus:outline-none focus:ring-2 focus:ring-teal-600"
+          className=" px-4 w-[75%] ml-2 py-3   shadow-sm   focus:outline-none   p-3 text-[16px] bg-[#171515] md:text-[18px]  rounded-lg outline-none focus:ring-1 focus:ring-[#73d2d7] text-[#a9a7a7]"
         />
         <input
           type="text"
           placeholder="See with time"
-          className=" px-4 w-[25%] py-3 ml-4 rounded-sm border shadow-sm border-gray-200  text-black focus:outline-none focus:ring-2 focus:ring-teal-600"
+          className=" px-4 w-[25%] py-3 ml-4 mr-2   shadow-sm    focus:outline-none focus:ring-1  p-3 text-[16px] bg-[#171515] md:text-[18px]  rounded-lg outline-none  focus:ring-[#73d2d7] text-[#a9a7a7]"
         />
         </div>
         {
           loader ? 
-          <div className="w-full min-h-[50vh] flex items-center justify-center bg-[#F9FAFB]">
-        <div className="h-12 w-12 border-4 border-t-[#2563EB] border-[#E5E7EB] rounded-full animate-spin"></div>
-      </div>
+          <div className="w-full min-h-[50vh] flex items-center justify-center bg-[#18181b]">
+          <div className="h-12 w-12 border-4 border-t-[#2563EB] border-[#E5E7EB] rounded-full animate-spin"></div>
+          </div>
            :
-           <div className="flex flex-col gap-y-6">
+           <div className=" w-full grid grid-col-1 md:grid-cols-2 gap-4 p-4  place-items-center">
         {inbox === "All" && <All textReview={textfilter} videoReview={videofilter} />}
-        {inbox === "Text" && <Text  textReview={textfilter} />}
+        {inbox === "Text" && <Text  textReview={textfilter}/>}
         {inbox === "Video" && <Video videoReview={videofilter} />}
         {inbox === "Liked" && <Liked search={search} />}
-      </div>
+           </div>
         }
         </div>
-    </div>
+      </div>
     </div>
     }
     </>

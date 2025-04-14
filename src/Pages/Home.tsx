@@ -2,8 +2,7 @@ import Main from "../Components/Main"
 
 const Home = () => {
   return (
-      <Main></Main>
+      <Main ></Main>
   )
 }
-
 export default Home

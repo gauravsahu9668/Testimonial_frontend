@@ -109,27 +109,10 @@ const Signup = () => {
     </div>
     </div>
     :
-    <div className="w-full min-h-[100vh] flex flex-col bg-[#F9FAFB]">
-  <div className="w-full text-center text-[#212529] mt-8 md:mt-16 font-semibold text-[28px] md:text-[35px]">
-    Sign up for free
-  </div>
-  <div className="w-full text-center text-[16px] md:text-[20px] text-[#6C757D]">
-    You will get 2 video and 10 text testimonial credits for FREE!
-  </div>
-  <div className="w-[90%] md:w-[60%] lg:w-[40%] xl:w-[32%] mx-auto p-6 mb-10 bg-white mt-10 md:mt-16 shadow-md rounded-lg">
-    <div className="flex items-start gap-x-3">
-      <input
-        className="w-[18px] md:w-[20px] accent-[#007BFF]"
-        type="checkbox"
-        id="check-box"
-      />
-      <p className="text-[14px] md:text-[16px] text-[#495057]">
-        I agree to the Testimonial Terms of Service and I'm aware my personal
-        data is processed in accordance with our Privacy Policy. Please read it
-        carefully.
-      </p>
-    </div>
-    <div className="w-full mt-5 cursor-pointer p-3 bg-[#F1F3F5] border rounded-lg flex items-center hover:shadow-md">
+    <div className="w-full bg-zinc-900 min-h-[100vh] flex flex-col">
+  
+  <div className="w-[90%] mt-24 mb-10 sm:w-[60%] md:w-[35%] mx-auto p-6 rounded-xl shadow-[0_0_50px_rgba(16,185,129,0.15)] hover:shadow-[0_0_50px_rgba(16,185,129,0.25)] transition-shadow duration-300  md:mt-24">
+    <div className="bg-black/40 flex cursor-pointer  hover:bg-black/60 px-8 py-3 rounded-lg font-medium transition-all duration-200 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]">
       <div className="border-r pr-3 flex items-center justify-center">
         <img src={google} className="w-[20px] md:w-[25px]" alt="Google" />
       </div>
@@ -154,7 +137,7 @@ const Signup = () => {
           id="firstname"
           {...register("firstname")}
           placeholder="Enter first name"
-          className="w-full p-3 text-[16px] md:text-[18px] border rounded-lg outline-none focus:ring-2 focus:ring-[#007BFF] text-[#495057]"
+          className="w-full p-3 text-[16px] bg-[#171515]  md:text-[18px]  rounded-lg outline-none focus:ring-2 focus:ring-[#22C55E] text-[#333333]"
         />
         {errors.firstname && (
           <span className="text-[12px] text-[#D9534F]">
@@ -174,7 +157,7 @@ const Signup = () => {
           {...register("email")}
           type="email"
           placeholder="Enter email"
-          className="w-full p-3 text-[16px] md:text-[18px] border rounded-lg outline-none focus:ring-2 focus:ring-[#007BFF] text-[#495057]"
+          className="w-full p-3 text-[16px] bg-[#171515]  md:text-[18px]  rounded-lg outline-none focus:ring-2 focus:ring-[#22C55E] text-[#333333]"
         />
         {errors.email && (
           <span className="text-[12px] text-[#D9534F]">
@@ -194,7 +177,7 @@ const Signup = () => {
           {...register("password")}
           type="password"
           placeholder="Enter password"
-          className="w-full p-3 text-[16px] md:text-[18px] border rounded-lg outline-none focus:ring-2 focus:ring-[#007BFF] text-[#495057]"
+          className="w-full p-3 text-[16px] bg-[#171515]  md:text-[18px]  rounded-lg outline-none focus:ring-2 focus:ring-[#22C55E] text-[#333333]"
         />
         {errors.password && (
           <span className="text-[12px] text-[#D9534F]">
@@ -207,7 +190,7 @@ const Signup = () => {
       </p>
       <button
         type="submit"
-        className="w-full py-3 mt-6 text-[16px] md:text-[18px] font-semibold text-white bg-[#007BFF] hover:bg-[#0056B3] rounded-lg shadow-sm"
+        className="bg-gradient-to-r w-full items-center justify-center mt-5 gap-x-2 from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]"
       >
         Sign up
       </button>

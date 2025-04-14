@@ -74,7 +74,7 @@ const EditSpace:React.FC<editspaceprops>=({Extras,notification,thankyou,space,sp
     }
   return (
       <>
-       <button onClick={editHandler} className="px-4 py-2 border text-black border-[#858282] rounded-lg hover:bg-teal-600 hover:text-white">
+       <button onClick={editHandler} className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]">
         Edit Space
        </button>
       </>

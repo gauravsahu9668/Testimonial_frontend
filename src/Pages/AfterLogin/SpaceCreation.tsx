@@ -26,177 +26,71 @@ const SpaceCreation = () => {
         window.removeEventListener("beforeunload", handleBeforeUnload);
       };
     }, []);
-    
   return (
-    // <div className="w-full min-h-[100vh] flex flex-col items-end">
-    //     <div className="w-[50%] mt-6 mr-16 rounded-md border-[1px] border-[#a1a1bc]  flex flex-row ">
-    //         {
-    //             mainData.map((data)=>{
-    //                 return (
-    //                     <div onClick={()=>{setPage(data.page)}} className={`w-[25%] cursor-pointer flex rounded-md items-center justify-center px-3 py-2  gap-x-3 ${page===data.page && "bg-[#5D5DFF]"}`}>
-    //                         {
-    //                             data.icon==="IoSettingsOutline" && <IoSettingsOutline></IoSettingsOutline>
-    //                         }
-    //                         {
-    //                             data.icon==="CiHeart" && <CiHeart></CiHeart>
-    //                         }
-    //                         {
-    //                             data.icon==="GiSettingsKnobs" && <GiSettingsKnobs></GiSettingsKnobs>
-    //                         }
-    //                         {
-    //                             data.icon==="IoMdNotificationsOutline" && <IoMdNotificationsOutline></IoMdNotificationsOutline>
-    //                         }
-    //                         <span>{data.page}</span>
-    //                     </div>
-    //                 )
-    //             })
-    //         }
-    //     </div>
-    //     <div className="w-full px-5 relative">
-    //         {
-    //             page==="Basic" && 
-    //             <>
-    //             <BasicLeft></BasicLeft>
-    //             <BasicRight></BasicRight>
-    //             </>
-                
-    //         }
-    //         {
-    //             page==="Thank you page" && 
-    //             <>
-    //             <Thankleft></Thankleft>
-    //             <ThankRight></ThankRight>
-    //             </>
-                
-    //         }
-    //         {
-    //             page==="Extra settings" && 
-    //             <>
-    //              <BasicLeft></BasicLeft>
-    //              <SettingRight></SettingRight>
-    //             </>
-    //         }
-    //         {
-    //             page==="Notifications" && 
-    //             <>
-    //              <NotifyLeft></NotifyLeft>
-    //              <NotifyRight></NotifyRight>
-    //             </>
-    //         }
-    //     </div>
-    // </div>
-  //   <div className="w-full min-h-[100vh] flex flex-col items-end">
-  // <div className="w-[90%] sm:w-[80%] md:w-[50%] mt-6 mr-4 sm:mr-8 lg:mr-16 rounded-md border-[1px] border-[#a1a1bc] flex flex-row flex-wrap sm:flex-nowrap">
-  //   {
-  //     mainData.map((data) => {
-  //       return (
-  //         <div 
-  //           onClick={() => { setPage(data.page) }} 
-  //           className={`w-[45%] sm:w-[25%] cursor-pointer flex rounded-md items-center justify-center px-3 py-2 gap-x-3 ${page === data.page && "bg-[#5D5DFF]"}`}>
-  //           {
-  //             data.icon === "IoSettingsOutline" && <IoSettingsOutline />
-  //           }
-  //           {
-  //             data.icon === "CiHeart" && <CiHeart />
-  //           }
-  //           {
-  //             data.icon === "GiSettingsKnobs" && <GiSettingsKnobs />
-  //           }
-  //           {
-  //             data.icon === "IoMdNotificationsOutline" && <IoMdNotificationsOutline />
-  //           }
-  //           <span className="text-xs sm:text-base">{data.page}</span>
-  //         </div>
-  //       );
-  //     })
-  //   }
-  // </div>
-  // <div className="w-full px-5 relative">
-  //   {
-  //     page === "Basic" && 
-  //     <>
-  //       <BasicLeft />
-  //       <BasicRight />
-  //     </>
-  //   }
-
-  //   {
-  //     page === "Thank you page" && 
-  //     <>
-  //       <Thankleft />
-  //       <ThankRight />
-  //     </>
-  //   }
-
-  //   {
-  //     page === "Extra settings" && 
-  //     <>
-  //       <BasicLeft />
-  //       <SettingRight />
-  //     </>
-  //   }
-
-  //   {
-  //     page === "Notifications" && 
-  //     <>
-  //       <NotifyLeft />
-  //       <NotifyRight />
-  //     </>
-  //   }
-  // </div>
-  //   </div>
-  <div className="w-full min-h-[100vh] flex flex-col items-end">
-  {/* Menu Section with Hover Effects and Shadows */}
-  <div className="w-[90%] sm:w-[80%] md:w-[50%] mt-6 mr-4 sm:mr-8 lg:mr-16 rounded-md border-[1px] border-[#a1a1bc] flex flex-row flex-wrap sm:flex-nowrap shadow-lg hover:shadow-xl transition-all duration-300">
-    {mainData.map((data) => {
-      return (
-        <div
+  <div className="w-full min-h-[100vh] flex flex-col bg-[#18181b] pt-8 items-end">
+        <div className="w-[95%] flex flex-col md:flex-row justify-between mx-auto">
+          <div className=" w-full   md:w-[40%] mt-9 md:p-10">
+          {page === "Basic" && (
+          <BasicLeft/>
+          )}
+          {page === "Thank you page" && (
+          <>
+          <Thankleft />
+          </>
+          )}
+          {page === "Extra settings" && (
+          <>
+          <BasicLeft />
+          </>
+          )}
+          {page === "Notifications" && (
+          <>
+          <NotifyLeft />
+          </>
+          )}
+          </div>
+          <div className=" w-full  md:w-[60%] md:p-5 mt-10">
+             <div className="w-full   py-2 flex flex-row items-center">
+             {mainData.map((data) => {
+             return (
+             <div
           onClick={() => { setPage(data.page) }}
-          className={`w-[45%] sm:w-[25%] cursor-pointer flex rounded-md items-center justify-center px-3 py-2 gap-x-3 transition-all duration-200 hover:bg-[#7979ff] ${page === data.page && "bg-[#5D5DFF] text-white"}`}>
+          className={`w-[45%] sm:w-[25%]   hover:bg-black/40 
+   space-x-2  ease-in-out cursor-pointer
+    hover:shadow-lg hover:shadow-emerald-500/10 flex items-center rounded-md  text-white justify-center px-1 py-2 gap-x-1 md:m-2 transition-all duration-200  ${page === data.page && "bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]"}`}>
           {/* Display Icons Based on data.icon */}
           {data.icon === "IoSettingsOutline" && <IoSettingsOutline />}
           {data.icon === "CiHeart" && <CiHeart />}
           {data.icon === "GiSettingsKnobs" && <GiSettingsKnobs />}
           {data.icon === "IoMdNotificationsOutline" && <IoMdNotificationsOutline />}
-          
-          {/* Page Name */}
           <span className="text-xs sm:text-base">{data.page}</span>
+             </div>
+             )
+             })}
+              </div>
+              {page === "Basic" && (
+              <>
+              <BasicRight />
+              </>
+               )}
+            {page === "Thank you page" && (
+            <>
+            <ThankRight />
+          </>
+          )}
+          {page === "Extra settings" && (
+          <>
+          <SettingRight />
+          </>
+          )}
+          {page === "Notifications" && (
+          <>
+          <NotifyRight />
+          </>
+          )}
+          </div>
         </div>
-      );
-    })}
   </div>
-
-  {/* Content Section (Conditionally Render Components Based on Page) */}
-  <div className="w-full px-5 relative mt-6">
-    {page === "Basic" && (
-      <>
-        <BasicLeft />
-        <BasicRight />
-      </>
-    )}
-
-    {page === "Thank you page" && (
-      <>
-        <Thankleft />
-        <ThankRight />
-      </>
-    )}
-
-    {page === "Extra settings" && (
-      <>
-        <BasicLeft />
-        <SettingRight />
-      </>
-    )}
-
-    {page === "Notifications" && (
-      <>
-        <NotifyLeft />
-        <NotifyRight />
-      </>
-    )}
-  </div>
-</div>
 
   )
 }

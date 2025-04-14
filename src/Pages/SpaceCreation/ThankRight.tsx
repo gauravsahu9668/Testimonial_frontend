@@ -45,16 +45,16 @@ const ThankRight = () => {
     //         </div>
     //      </div>
     // </div>
-    <div className="w-[45%] p-5 min-h-[100vh] border-t-2 mb-16 rounded-md absolute right-32 top-10">
-  <h1 className="text-[40px] font-bold text-center text-[#25282C]">
+    <div className="w-full mb-6  min-h-[100vh] p-8 bg-[#020203] mx-auto rounded-lg shadow-md ">
+  <h1 className="text-[40px] font-bold text-center text-[#e9eaeb]">
     Customize thank you page
   </h1>
-  <p className="text-center text-[20px] w-[90%] mt-4 mx-auto text-[#55595F]">
+  <p className="text-center text-[20px] w-[90%] mt-4 mx-auto text-[#c9cacd]">
     Add your personalized message to show your appreciation.
   </p>
 
-  <div className="mt-20 flex flex-col">
-    <label htmlFor="image-file" className="text-[#55595F]">Image</label>
+  <div className="mt-10 flex flex-col">
+    <label htmlFor="image-file" className="text-[#c9cacd]">Image</label>
     <div className="flex flex-row w-fit mt-4 items-center gap-x-6">
       <div className="w-[80px] h-[50px] rounded-md bg-[#EBF1F5]">
         {imagestring && <img src={imagestring} className="w-full h-full rounded-md" alt="logo" />}
@@ -68,24 +68,24 @@ const ThankRight = () => {
       />
     </div>
 
-    <div className="flex mt-6 flex-col text-[#55595F] w-full justify-center">
+    <div className="flex mt-6 flex-col text-[#c9cacd] w-full justify-center">
       <label htmlFor="header">Thank you title</label>
       <input
         value={thankyouState.thankyouTitle}
         onChange={(e) => dispatch(setThankyouTitle(e.target.value))}
-        className="outline-none focus:border-[#2563EB] focus:border-[2px] p-2 rounded-md mt-3 border-[1px] border-[#E2E8ED]"
+        className="w-full p-3 text-[16px] bg-[#171515] md:text-[18px] mt-2  rounded-lg outline-none focus:ring-1 focus:ring-[#83e3e1] text-white"
         type="text"
         placeholder="Would you like to give a shoutout for xyz?"
         id="header"
       />
     </div>
 
-    <div className="flex mt-6 flex-col text-[#55595F] w-full justify-center">
+    <div className="flex mt-6 flex-col text-[#c9cacd] w-full justify-center">
       <label htmlFor="message">Your custom message</label>
       <textarea
         value={thankyouState.thankyouMessage}
         onChange={(e) => dispatch(setThankyouMessage(e.target.value))}
-        className="outline-none focus:border-[#2563EB] focus:border-[2px] p-2 rounded-md mt-3 border-[1px] border-[#E2E8ED]"
+        className="w-full p-3 text-[16px] bg-[#171515] md:text-[18px] mt-2  rounded-lg outline-none focus:ring-1 focus:ring-[#83e3e1] text-white"
         id="message"
         rows={4}
         required

@@ -35,13 +35,14 @@ function App() {
      }
   return (
   <>
-  <div className="w-full min-h-[100vh] ">
+  <div className="w-[100vw] overflow-x-hidden min-h-[100vh] bg-[#18181b] ">
     {
       (location.pathname === "/create-space/new") && token ? 
         <div onClick={cancleClicHandler} className="w-full flex items-center justify-end pr-16 pt-3 h-[60px]">
           <div className='text-[#d22727 hover:bg-[#ddacac90] border-[#a12323] border-[1px] flex items-center justify-center cursor-pointer w-[100px] h-[50px] rounded-md '>cancel</div>
         </div> : 
         location.pathname.startsWith('/testimonial/') ? null : <Navbar /> // Show Navbar except on "/testimonial/:id"
+        
     }
 
     <Routes>
