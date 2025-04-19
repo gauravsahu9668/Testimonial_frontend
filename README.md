@@ -1,50 +1,54 @@
-# React + TypeScript + Vite
+# ✨ ReviewCraft – Testimonial Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ReviewCraft is a full-stack web application that allows businesses to collect, manage, and showcase customer testimonials with ease. It supports video and text testimonials, real-time previews, analytics, and customizable thank-you pages.
 
-Currently, two official plugins are available:
+> ✅ Designed for a seamless testimonial collection process with a beautiful multi-step UI flow.  
+> 🔒 Built with secure Firebase OTP authentication, PostgreSQL, and Cloudflare Workers.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## 🚀 Live Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+🔗 [https://reviewcraft.vercel.app](http://reviewcraft.netlify.app)
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🧠 Features
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### ✨ User Features
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Create testimonial spaces with titles, logos, and branding
+- Multi-step onboarding (Space Details → Thank You Page → Notification Setup → Extra Details)
+- Share unique space links with customers
+- Real-time preview of space as you create it
+- OTP-based Firebase authentication (email only, no passwords)
+- View and download text/image/video testimonials
+- Embed testimonials directly into your site via iframe
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### 🎥 Customer Experience
+
+- Simple interface for customers to:
+  - Submit text feedback
+  - Record or upload a video testimonial
+- 2-minute process from start to finish
+
+## 🏗️ Tech Stack
+
+| Layer | Tech |
+|------|------|
+| **Frontend** | React.js, Tailwind CSS |
+| **Backend** | Express.js, Cloudflare Hono |
+| **Auth** | Firebase Authentication with OTP |
+| **Database** | PostgreSQL with Prisma ORM |
+| **Video Storage** | (Optional: Cloudinary, Firebase Storage, etc.) |
+| **Analytics** | Chart.js |
+| **CI/CD** | Vercel, Netlify |
+
+
+## 🧑‍💻 Getting Started Locally
+
+### Prerequisites
+
+- Node.js >= 18
+- PostgreSQL (local or cloud)
+- Firebase project
+- Prisma CLI installed (`npm i -g prisma`)
+
