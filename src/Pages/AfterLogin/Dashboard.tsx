@@ -282,7 +282,7 @@ useEffect(() => {
             </div>
           </div>
         ) : (
-          <div className="w-[90%] lg:w-[75%] mx-auto flex-col  py-28 ">
+          <div className="w-[90%] lg:w-[75%] mx-auto flex-col justify-center  py-28 ">
             <FaFolderPlus className="text-4xl mx-auto text-[#d4d6da] text-center" />
             <h1 className="mt-4 text-center text-[18px] lg:text-[22px] text-[#abb8cb]">No Spaces yet</h1>
             <p className="mt-3 text-center text-[12px] lg:text-[14px] text-[#c1c2c4]">Create your first space to start collecting testimonials.</p>
