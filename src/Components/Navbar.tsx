@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -38,8 +37,8 @@ function Navbar() {
               <>
                  <div className="hidden md:flex items-center space-x-4">
              <NavLink link='/dashboard' icon={<LayoutDashboard size={18} />} text="Dashboard" />
-             <NavLink link='/upgrade' icon={<Settings size={18} />} text="Settings" />
-             <NavLink link='/settings' icon={<Rocket size={18} />} text="Upgrade" 
+             <NavLink link='/settings' icon={<Settings size={18} />} text="Settings" />
+             <NavLink link='/upgrade' icon={<Rocket size={18} />} text="Upgrade" 
               className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600" />
              <div className={`px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-black/40 
     flex items-center space-x-2 transition-all duration-200 ease-in-out cursor-pointer
@@ -89,25 +88,25 @@ function Navbar() {
     );
 }
 const NavLink = ({ icon,link, text, className = "" }:any) => (
-  <a
-    href={link}
+  <Link
+    to={link}
     className={`px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-black/40 
     flex items-center space-x-2 transition-all duration-200 ease-in-out cursor-pointer
     hover:shadow-lg hover:shadow-emerald-500/10 ${className}`}
   >
     {icon}
     <span>{text}</span>
-  </a>
+  </Link>
 );
 const MobileNavLink = ({link, icon, text }:any) => (
-  <a
-    href={link}
+  <Link
+    to={link}
     className="text-gray-300 hover:text-white hover:bg-black/40  px-3 py-2 rounded-md text-base font-medium
     flex items-center space-x-2"
   >
     {icon}
     <span>{text}</span>
-  </a>
+  </Link>
 );
 
 export default Navbar;

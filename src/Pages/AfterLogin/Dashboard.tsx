@@ -39,7 +39,7 @@ ChartJS.register(
 const Dashboard = () => {
 const [spaces, setSpace] = useState([]);
 const [totalSpaces, setTotalSpaces] = useState(0);
-const { token,payment,credits} = useSelector((state: any) => state.auth);
+const { token,credits} = useSelector((state: any) => state.auth);
 const [opener,setopener]=useState(-1)
 const [loader,setLoader]=useState(false)
 const deleteHandler=async(space_id:number)=>{
@@ -67,18 +67,8 @@ const copyHandler=(space_id:number)=>{
      toast.success("space copied")
 }
 const createSpaceHandler=()=>{
-     if(credits>0){
+     
       navigate("/create-space/new")
-     }
-     else{
-       if(payment){
-        navigate("/create-space/new");
-       }
-       else{
-          toast.error("No more credits")
-          navigate("/upgrade")
-       }
-     }
 }
 const copylink=()=>{
   const url="https://chic-puffpuff-b72889.netlify.app"
