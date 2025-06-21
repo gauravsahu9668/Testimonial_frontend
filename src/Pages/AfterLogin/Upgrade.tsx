@@ -115,7 +115,7 @@ const Upgrade = () => {
   useEffect(()=>{
   },[credits])
   return (
-    <div className="flex pt-10 items-center gap-x-10 justify-center mt-20">
+    <div className="flex flex-col md:flex-row items-center justify-center mx-auto pt-10 gap-10 mt-20 px-4">
         <div className="max-w-sm w-full bg-neutral-900 border border-neutral-700 rounded-xl shadow-lg transition-all duration-300 p-6 group hover:scale-[1.01]">
   {/* Title */}
   <h2 className="text-lg font-semibold text-white">Premium Credits</h2>
@@ -154,7 +154,7 @@ const Upgrade = () => {
     </li>
   </ul>
         </div>
-        <div className="max-w-sm w-full bg-neutral-900 border border-neutral-700 rounded-xl shadow-lg transition-all duration-300 p-6 group hover:scale-[1.01]">
+        <div className="max-w-sm mb-6 w-full mt-6 bg-neutral-900 border border-neutral-700 rounded-xl shadow-lg transition-all duration-300 p-6 group hover:scale-[1.01]">
   {/* Title */}
   <h2 className="text-lg font-semibold text-white">Premium Credits</h2>
 
