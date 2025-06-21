@@ -272,10 +272,12 @@ useEffect(() => {
             <FaFolderPlus className="text-4xl mx-auto text-[#d4d6da] text-center" />
             <h1 className="mt-4 text-center text-[18px] lg:text-[22px] text-[#abb8cb]">No Spaces yet</h1>
             <p className="mt-3 text-center text-[12px] lg:text-[14px] text-[#c1c2c4]">Create your first space to start collecting testimonials.</p>
-              <button onClick={()=>{createSpaceHandler()}} className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]">
+              <div className="w-full flex items-center justify-center mt-6">
+                <button onClick={()=>{createSpaceHandler()}} className="bg-gradient-to-r flex items-center  from-emerald-500  to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]">
                 <IoIosAdd />
-                Create a new space
+                <span className="ml-2">Create a new space</span>
               </button>
+              </div>
           </div>
         )}
       </div>

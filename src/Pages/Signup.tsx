@@ -87,7 +87,7 @@ const Signup = () => {
   return (
   <>{
     sendotp ?
-    <div className="flex justify-center items-center mt-3 py-16 bg-gray-100">
+    <div className="flex justify-center w-full h-[97vh]  items-center mt-3 py-16 bg-black/40">
     <div className="bg-white p-6 rounded-lg shadow-lg">
       <h1 className="text-2xl font-semibold text-gray-800 text-center mb-4">Enter OTP</h1>
       <form onSubmit={handleSubmit(submitsignup)} className="flex flex-col space-y-4">
