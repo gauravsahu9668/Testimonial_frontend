@@ -124,6 +124,11 @@ const gettextvideodata=async()=>{
   }
 }
 const [showMenu, setShowMenu] = useState(false);
+const changevalues=(id:number)=>{
+     setShowMenu(!showMenu)
+    setopener(id)
+    console.log(id)
+}
 useEffect(() => {
     getallSpaces();
     gettextvideodata();
@@ -155,11 +160,11 @@ useEffect(() => {
             </div>
             <div className="flex-1 min-w-[200px] p-6 rounded-xl  bg-[#111113]  shadow-[0_0_50px_rgba(16,185,129,0.15)] hover:shadow-[0_0_50px_rgba(16,185,129,0.25)] transition-shadow duration-300">
               <div className="w-full flex items-center justify-between">
-                <p className="text-[16px] text-[#f6f7f9]">Current Plan</p>
+                <p className="text-[16px] text-[#f6f7f9]">No credits</p>
                 <IoCheckboxOutline className="text-[#f6f7f9]" />
               </div>
               <div className="flex justify-between mt-2 items-center">
-                <p className="text-[20px] lg:text-[24px] text-[#4eeddb] font-semibold">Starter</p>
+                <p className="text-[20px] lg:text-[24px] text-[#4eeddb] font-semibold">Buy More</p>
                 <button className="px-3 py-2 text-sm rounded-md bg-[#EFF6FF] text-[#2563EB] hover:bg-[#DBEAFE]">
                   Upgrade
                 </button>
@@ -187,13 +192,13 @@ useEffect(() => {
     <img
       src={data.spaceLogo}
       alt={`${data.spaceName} Logo`}
-      className="w-full h-[80%] md:h-full rounded-lg object-cover"
+      className="w-full h-[140px] md:h-[140px] rounded-lg object-cover"
     />
                       </div>
                       <div className="w-full flex flex-row md:flex-col  p-1">
     <div className="w-full flex items-center justify-between pl-4 md:pr-8 text-left text-[20px] md:text-[30px] font-semibold text-[#d8d7d7]">
       <span>{data.spaceName}</span>
-      <button onClick={()=>{setShowMenu(!showMenu); setopener(data.id)}} className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-black/50 hover:outline-none hover:ring-2 hover:ring-inset hover:ring-emerald-500">
+      <button onClick={()=>{changevalues(Number(data.space_id))}} className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-black/50 hover:outline-none hover:ring-2 hover:ring-inset hover:ring-emerald-500">
                 <span className="sr-only">Open main menu</span>
                 <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -232,7 +237,7 @@ useEffect(() => {
       </div>
                       </div>
                       {
-                        showMenu && opener===data.id && (
+                        showMenu && opener===Number(data.space_id) && (
                           <div className="absolute flex flex-col gap-y-2 bottom-8 right-10 bg-[#1f1f1f] p-4 rounded-xl shadow-lg shadow-emerald-500/10 text-sm text-gray-300">
   <span className="hover:text-white transition-colors duration-200 cursor-pointer">
     <Link to={`/manage-testimonial/${data.space_id}`}>Manage testimonial</Link>
