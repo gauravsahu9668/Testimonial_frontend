@@ -39,7 +39,8 @@ ChartJS.register(
 const Dashboard = () => {
 const [spaces, setSpace] = useState([]);
 const [totalSpaces, setTotalSpaces] = useState(0);
-const { token,credits} = useSelector((state: any) => state.auth);
+const [credits,setcredits]=useState(0);
+const { token} = useSelector((state: any) => state.auth);
 const [opener,setopener]=useState(-1)
 const [loader,setLoader]=useState(false)
 const deleteHandler=async(space_id:number)=>{
@@ -67,8 +68,12 @@ const copyHandler=(space_id:number)=>{
      toast.success("space copied")
 }
 const createSpaceHandler=()=>{
-     
-      navigate("/create-space/new")
+  if(credits>0){
+    navigate("/create-space/new")
+  }
+  else{
+    toast.error("No more credits")
+  }
 }
 const copylink=()=>{
   const url="https://chic-puffpuff-b72889.netlify.app"
@@ -93,7 +98,8 @@ const getallSpaces = async () => {
         setSpace(result.data.data)
         setLoader(false)
         setTotalSpaces(result.data.data.length)
-        console.log(result.data.data)
+        setcredits(result.data.user.credits)
+        console.log(result.data)
       })
     }catch(e){
       console.log(e)
@@ -129,31 +135,6 @@ useEffect(() => {
         <div className="h-12 w-12 border-4 border-t-[#2563EB] border-[#E5E7EB] rounded-full animate-spin"></div>
       </div> :
       <div className="flex flex-col w-full min-h-[100vh] bg-[#18181b] text-[#374151]">
-        {/* <div className="w-[90%] lg:w-[75%] mx-auto mt-10 lg:mt-20 flex flex-col lg:flex-row items-center lg:pb-0">
-          <div className="w-full lg:w-[50%] p-3 flex flex-col justify-start">
-            <button className="w-max px-4 py-2 rounded-full bg-[#EFF6FF] text-[#2563EB] font-semibold flex items-center justify-center text-sm">
-              New feature
-            </button>
-            <h1 className="mt-4 text-[22px] lg:text-[30px] font-semibold text-[#1F2937]">Portfolio Page Builder</h1>
-            <p className="mt-4 lg:mt-8 text-[14px] lg:text-[18px] text-[#4B5563]">
-              A customizable one-page profile showcasing your business, testimonials, and contact information. Can be hosted on your custom domain. Perfect for agencies and freelancers to demonstrate their track record of success and establish new relationships.
-            </p>
-            <div className="flex mt-4 lg:mt-5 gap-x-3">
-              <button className="px-4 py-2 rounded-md bg-[#E5E7EB] text-[#1F2937] text-sm hover:bg-[#D1D5DB]">
-                Learn more
-              </button>
-              <button className="px-4 py-2 rounded-md bg-[#F3F4F6] text-[#6B7280] text-sm hover:bg-[#E5E7EB]">
-                Dismiss
-              </button>
-            </div>
-          </div>
-          <div className="w-full lg:w-[50%] mt-4 lg:mt-0 rounded-md">
-            <img src={pagebuilder} className="rounded-md w-full object-cover" alt="Page Builder" />
-          </div>
-        </div> */}
-        {/* <div className="mt-20 w-[80%] mx-auto py-5 ">
-               <DashboardGraph1></DashboardGraph1>
-        </div> */}
         <div className="w-full bg-[#111113] py-12">
            <div className="w-[90%] lg:w-[75%] mx-auto my-6">
           <h1 className="text-[28px] lg:text-[35px] font-bold text-[#d1d3d4] mb-6">Overview</h1>
