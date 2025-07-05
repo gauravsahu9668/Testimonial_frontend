@@ -61,8 +61,8 @@ function App() {
           <Route path='/settings' element={<Settings />} />
           <Route path='/affiliates' element={<DashBoard />} />
           <Route path='/rewardaccount' element={<DashBoard />} />
-          <Route path='/manage-testimonial/:id' element={<Manage />} />
-          <Route path='/walloflove' element={<WallOfLove></WallOfLove>} />
+          <Route path='/manage-testimonial/:id' element={<Manage/>} />
+          <Route path='/walloflove/:id' element={<WallOfLove></WallOfLove>} />
           <Route path='/analytics/:id' element={<Analytics></Analytics>}></Route>
         </>
         :

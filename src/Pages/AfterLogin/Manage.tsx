@@ -132,7 +132,7 @@ const Manage = () => {
           console.log(e)
         }
     };
-    const[showTabs,setshowtabs]=useState(false)
+    const[showTabs,setshowtabs]=useState(false);
     const[textfilter,settextFilteredData]=useState<textReview[]>([]);
     const[videofilter,setvideoFilteredData]=useState<videReview[]>([]);
     const searchHandler = (e:any) => {
@@ -215,7 +215,7 @@ const Manage = () => {
                 d="M12 5v14m7-7H5"
               />
             </svg>
-            <Link to="/walloflove">
+            <Link to={`/walloflove/${id}`}>
                  <span>Wall of Love</span>
             </Link>
           </div>
@@ -229,7 +229,7 @@ const Manage = () => {
                  { showTabs && (
                   <>
                   {inboxData.map((data, index) => (
-           <div
+                       <div
           key={index}
           className={`flex items-center gap-x-4 p-3 mb-3 rounded-lg cursor-pointer ${
             inbox === data.text ? " text-[#aeaeae] rounded-xl shadow-[0_0_50px_rgba(16,185,129,0.15)] hover:shadow-[0_0_50px_rgba(16,185,129,0.25)] transition-shadow duration-300" : "px-3 py-2 rounded-xl  hover:shadow-[0_0_50px_rgba(16,185,129,0.25)]  text-sm font-medium text-gray-300 hover:text-white hover:bg-black/40 flex items-center space-x-2 transition-all duration-200 ease-in-out cursor-pointerhover:shadow-lg hover:shadow-emerald-500/10"
@@ -247,8 +247,26 @@ const Manage = () => {
             {data.text==="Video" && `${videoReview.length}`}
           { data.text==="Liked" && `${liked}`}
            </div>
-           </div>
+                       </div>
                    ))}
+                    <div className="flex pl-2 mt-4 items-center text-[#bfbebe] cursor-pointer gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 5v14m7-7H5"
+              />
+            </svg>
+            <Link to={`/walloflove/${id}`}>
+                 <span>Wall of Love</span>
+            </Link>
+          </div>
                   </>
                  )
                  }

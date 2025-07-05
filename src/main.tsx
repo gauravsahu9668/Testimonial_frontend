@@ -11,12 +11,14 @@ import { Toaster } from 'react-hot-toast'
 import ScrollToTop from './Components/Scrolltotop.tsx'
 import thankyouReducer from "./slices/thankyouReducer.ts"
 import extraReducer from "./slices/extraReducer.ts"
+import layoutReducer from "./slices/LayoutSlice.ts"
 const store=configureStore({
   reducer:{
     auth: authReducer,
     form1: form1Reducer,
     thankyou:thankyouReducer,
-    extra:extraReducer
+    extra:extraReducer,
+    layout:layoutReducer
   }
 })
 createRoot(document.getElementById('root')!).render(
