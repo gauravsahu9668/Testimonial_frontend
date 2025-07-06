@@ -51,7 +51,7 @@ interface LayoutState {
 }
 
 const initialState: LayoutState = {
-  layout: "carousel",
+  layout: "list",
   fullWidth: true,
   customWidth: "200",
   reviewsPerPage: 6,
