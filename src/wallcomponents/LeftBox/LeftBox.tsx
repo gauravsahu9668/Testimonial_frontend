@@ -7,8 +7,40 @@ import LeftLayout from "./leftLayout";
 import LeftReview from "./leftReview";
 import LeftSettings from "./leftSettings";
 import LeftStyle from "./leftStyle";
+import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { BACKEND_URL } from "../../server/axiosConnect";
 const LeftBox = () => {
+  const location=useLocation()
+  const url=location.pathname
+  const total=url.split('/')
+  const spaceId=Number(total[2])
+  const {token}=useSelector((state:any)=>state.auth)
+  const widgetState = useSelector((state: any) => state.layout);
+  const userId=Number(localStorage.getItem("userId"));
   const [page,setpage]=useState("Layout");
+
+  const saveWidget=async()=>{
+    console.log("kya hua")
+    try{
+      const result = await axios({
+            url: `${BACKEND_URL}/space/createWidget`,
+            method: "POST",
+            data: {
+              spaceId: spaceId,
+              userId:userId,
+              widgetState:widgetState
+            },
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
+          });
+          console.log(result)
+    }catch(error){
+      console.log(error)
+    }
+  }
   return (
     <div className=" w-full md:w-1/4 bg-[#202020] text-gray-100 shadow-black border-t-[1px] border-[#050505] flex ">
         <div className="w-[20%] h-full border-r-[1px] border-black flex flex-col items-center">
@@ -49,8 +81,8 @@ const LeftBox = () => {
             }
           </div>
          <div className="w-full h-[15%] flex items-center justify-center px-3 border-t-[1px] border-black">
-              <div className="bg-gradient-to-r flex items-center  from-emerald-500  to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]">
-                Add to your website
+              <div onClick={saveWidget} className="bg-gradient-to-r flex items-center  from-emerald-500  to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-8 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]">
+                Save this Wall
               </div>
          </div>
         </div>

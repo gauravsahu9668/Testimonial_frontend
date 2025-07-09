@@ -78,7 +78,7 @@ const initialState: LayoutState = {
   reviewTextFullOrShort: "full",
   textLength: 150,
   alignCardsByHeight: true,
-
+  
   colorScheme: "Light",
   accentColor: "#3b82f6",
   font: "Default",

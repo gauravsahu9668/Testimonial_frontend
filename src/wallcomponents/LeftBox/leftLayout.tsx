@@ -10,10 +10,8 @@ import { FaChevronRight } from "react-icons/fa";
 import WidgetTitlePanel from "./components/watchtitle";
 import ListLayoutPanel from "./components/cutomizepage";
 import { 
-  SquareStack, 
   LayoutGrid, 
   List, 
-  LayoutPanelTop, 
   SlidersHorizontal 
 } from "lucide-react";
 
@@ -30,10 +28,8 @@ export default function LayoutSelector() {
   const [customizepage, setCustomizepage] = useState(false);
 
   const layouts = [
-    { id: 'carousel', label: 'Carousel', icon: SquareStack },
     { id: 'grid', label: 'Grid', icon: LayoutGrid },
     { id: 'list', label: 'List', icon: List },
-    { id: 'masonry', label: 'Masonry', icon: LayoutPanelTop },
     { id: 'slider', label: 'Slider', icon: SlidersHorizontal },
   ];
 

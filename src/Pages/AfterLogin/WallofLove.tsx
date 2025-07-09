@@ -10,7 +10,7 @@ const WallOfLove = () => {
     <RightBox></RightBox>
     </div>
   </div>
-
+  
   );
 };
 

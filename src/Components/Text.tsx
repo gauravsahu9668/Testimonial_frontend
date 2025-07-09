@@ -164,7 +164,7 @@ const Text:React.FC<VideoReviewProps>  = ({textReview}) => {
                                     <div className="text-[black] mt-3">
                                     <Rating rating={data.starRating} ></Rating>
                                     </div>
-                                    <div className="text-[15px] mt-3 text-[#bab7b7] font-semibold">{data.custMessage}</div>
+                                    <div className="text-[15px] mt-3 text-[#bab7b7] font-semibold">{data.custMessage.substring(0,150)}</div>
                                     <img className="w-[80%] shadow-[0_3px_10px_rgb(0,0,0,0.2)] mt-3   h-[150px] rounded-lg" src={data.reviewImage}></img>
                                   </div>
                                   <div className="flex flex-col w-[50%] pl-4 items-start ">

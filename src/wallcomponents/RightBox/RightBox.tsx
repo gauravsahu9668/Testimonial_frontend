@@ -48,7 +48,6 @@ const RightBox = () => {
           console.log(e)
         }
     };
-
     const layout = useSelector((state: any) => state.layout.layout)
     const colorScheme = useSelector((state: any) => state.layout.colorScheme)
     console.log(layout)
